@@ -1,0 +1,19 @@
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: bisque;
+}
+
+.app-container {
+  background-color: azure;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  -webkit-box-shadow: 9px 9px 9px -1px rgba(0,0,0,0.4); 
+  box-shadow: 9px 9px 9px -1px rgba(0,0,0,0.4);
+  text-align: center;
+  width: fit-content;
+  background-color: beige;
+}
