@@ -4,7 +4,7 @@ import List from '@mui/material/List';
 
 const ListItems = () => {
   return (
-    <List>
+    <List sx={{ width: '50vw' }}>
       <ListItemComponent />
       <ListItemComponent />
       <ListItemComponent />

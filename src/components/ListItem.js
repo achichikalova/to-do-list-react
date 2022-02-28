@@ -19,11 +19,23 @@ const ListItemComponent = () => {
   });
 
   return (    
-    <ListItem sx={{ width: '50vw' }}>
+    <ListItem>
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          width: '100%',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? '#101010' : 'grey.100',
+          color: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
+          border: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+          borderRadius: 2,
+          fontSize: '0.875rem',
+          fontWeight: '700',
+          textAlign: 'center',
         }}
       >
         <ListItemButton component="div">
