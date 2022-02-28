@@ -8,8 +8,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 
-const ListItemComponent = () => {
-
+const ListItemComponent = ({ task, tasks, setTasks }) => {
+  console.log(tasks);
   const checkTheme = createTheme({
     palette: {
       primary: {
@@ -17,6 +17,10 @@ const ListItemComponent = () => {
       },
     },
   });
+
+  const deleteHandler = () => {
+    setTasks(tasks.filter(elem => elem.id !== task.id));
+  }
 
   return (    
     <ListItem>
@@ -40,11 +44,14 @@ const ListItemComponent = () => {
       >
         <ListItemButton component="div">
           <ThemeProvider theme={checkTheme} >
-            <Checkbox sx={{ color: green[500] }} />
+            <Checkbox sx={{ color: green[500], margin: '0 1rem' }} />
           </ThemeProvider>
-          <p>Your task</p>
+          <p>{task.text}</p>
           <Tooltip title='Delete' >
-            <DeleteIcon sx={{ color: red[500], m: 2 }}/>            
+            <DeleteIcon 
+              sx={{ color: red[500], m: 2 }}
+              onClick={deleteHandler}
+            />            
           </Tooltip>
         </ListItemButton>
       </Box>
