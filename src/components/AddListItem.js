@@ -3,7 +3,24 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
-const AddListItem = () => {
+const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
+
+  const inputHandler = (e) => {
+    setUserInput(e.target.value);
+  }
+
+  const submitTaskHandler = (e) => {
+    e.preventDefault();
+    setTasks([
+      ...tasks, 
+      {
+        text: userInput,
+        id: Math.random().toString(36).substr(2, 9)
+      }
+    ]);
+    setUserInput('');
+  }
+
   return (
     <Box
       component="form"
@@ -19,7 +36,10 @@ const AddListItem = () => {
       <TextField 
         id="standard-basic" 
         label="Print Your Task Here..." variant="standard"
-        fullWidth />
+        fullWidth
+        onChange={inputHandler}
+        value={userInput}
+      />
       <AddCircleIcon 
         sx={{
           width: '10%',
@@ -27,7 +47,10 @@ const AddListItem = () => {
           color: 'green',
           cursor: 'pointer'          
         }} 
-        className='add-btn'/>
+        className='add-btn'
+        type='submit'
+        onClick={submitTaskHandler}
+      />
     </Box>
   )
 }
