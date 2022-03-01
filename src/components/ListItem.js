@@ -53,7 +53,7 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
           textAlign: 'center',
         }}
       >
-        <ListItemButton component="div">
+        <ListItemButton component="div" style={{display: 'flex', justifyContent: 'space-between'}}>
           <ThemeProvider theme={checkTheme} >
             <Checkbox 
               sx={{ color: green[500], margin: '0 1rem' }}
