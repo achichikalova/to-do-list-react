@@ -9,7 +9,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 
 const ListItemComponent = ({ task, tasks, setTasks }) => {
-  console.log(tasks);
   const checkTheme = createTheme({
     palette: {
       primary: {
@@ -20,6 +19,18 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
 
   const deleteHandler = () => {
     setTasks(tasks.filter(elem => elem.id !== task.id));
+  }
+
+  const completeHandler = () => {
+    setTasks(tasks.map(elem => {
+      if (elem.id === task.id) {
+        return {
+          ...elem, 
+          complete: !elem.complete
+        }
+      }
+      return elem;
+    }));
   }
 
   return (    
@@ -44,9 +55,12 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
       >
         <ListItemButton component="div">
           <ThemeProvider theme={checkTheme} >
-            <Checkbox sx={{ color: green[500], margin: '0 1rem' }} />
+            <Checkbox 
+              sx={{ color: green[500], margin: '0 1rem' }}
+              onClick={completeHandler}
+            />
           </ThemeProvider>
-          <p>{task.text}</p>
+          <p style={{ textDecoration : task.complete ? 'line-through' : 'none' }}>{task.text}</p>
           <Tooltip title='Delete' >
             <DeleteIcon 
               sx={{ color: red[500], m: 2 }}
