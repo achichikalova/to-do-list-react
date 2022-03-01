@@ -60,7 +60,7 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
               onClick={completeHandler}
             />
           </ThemeProvider>
-          <p style={{ textDecoration : task.complete ? 'line-through' : 'none' }}>{task.text}</p>
+          <p style={{ textDecoration : task.complete ? 'line-through' : 'none', fontSize: '1.2rem' }}>{task.text}</p>
           <Tooltip title='Delete' >
             <DeleteIcon 
               sx={{ color: red[500], m: 2 }}
