@@ -9,7 +9,6 @@ function App() {
 
   const [userInput, setUserInput] = useState('');
   const [tasks, setTasks] = useState([]);
-  console.log(tasks)
 
   useEffect(() => {
     const tasksAPI = `http://localhost:3001/api/tasks`;

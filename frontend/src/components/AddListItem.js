@@ -17,10 +17,10 @@ const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
     e.preventDefault();
 
     const tasksAPI = `http://localhost:3001/api/tasks`;
-    const expData = { text: userInput, id: Math.random().toString(36).substring(2, 9), complete: false };
+    const expData = { text: userInput, id: Math.random().toString(36).substring(2, 9), complete: false };    
     
-    axios.post(tasksAPI, expData);
     if (userInput.length !== 0) {
+      axios.post(tasksAPI, expData);
       try {
         setTasks([
           ...tasks,
