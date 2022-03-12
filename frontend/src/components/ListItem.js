@@ -7,6 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 const ListItemComponent = ({ task, tasks, setTasks }) => {
   const checkTheme = createTheme({
@@ -18,6 +19,10 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
   });
 
   const deleteHandler = () => {
+    const tasksAPI = `http://localhost:3001/api/tasks/${task.id}`;
+    const expData = { id: task.id };
+
+    axios.delete(tasksAPI, expData);
     setTasks(tasks.filter(elem => elem.id !== task.id));
   }
 

@@ -34,7 +34,6 @@ app.get('/api/tasks', (req, res) => {
 
 app.post('/api/tasks', (req, res) => {
   const { text, id, complete } = req.body;
-  console.log(text, id, complete)
   const query = `INSERT INTO tasks (text, id, complete) VALUES ($1, $2, $3);`;
   const queryParams = [text, id, complete];
 
@@ -47,6 +46,12 @@ app.post('/api/tasks', (req, res) => {
       res.status(500)
          .send({ error: err.message });
     })
+})
+
+app.delete('/api/tasks/:id', (req, res) => {
+  const task_id = req.params.id;
+  const query = `DELETE FROM tasks WHERE id = $1`;
+  db.query(query, [task_id]);
 })
 
 app.listen(3001, () => {
