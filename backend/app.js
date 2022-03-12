@@ -7,7 +7,7 @@ const dbConfig = require('./dbConfig');
 const db = new Pool(dbConfig);
 
 app.get('/', (req, res) => {
-  res.send("Test");
+
 })
 
 
