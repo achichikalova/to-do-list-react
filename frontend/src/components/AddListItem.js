@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import axios from 'axios';
 
 const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
 
@@ -14,18 +15,25 @@ const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
 
   const submitTaskHandler = (e) => {
     e.preventDefault();
+
+    const tasksAPI = `http://localhost:3001/api/tasks`;
+    const expData = { text: userInput, id: Math.random().toString(36).substring(2, 9), complete: false };
     
+    axios.post(tasksAPI, expData);
     if (userInput.length !== 0) {
-      setTasks([
-        ...tasks, 
-        {
-          text: userInput,
-          id: Math.random().toString(36).substring(2, 9),
-          complete: false
-        }
-      ]);
+      try {
+        setTasks([
+          ...tasks,
+          {
+            text: expData.text,
+            id: expData.id,
+            complete: expData.complete
+          }])
+      } catch (err) {
+        console.log(err);
+      }      
     } else {
-      setError("Please, print your task first")
+      setError("Please, print your task first");
     }
     setUserInput('');
   }
