@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Checkbox from '@mui/material/Checkbox';
 import { green, red } from '@mui/material/colors';
@@ -10,6 +10,8 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 
 const ListItemComponent = ({ task, tasks, setTasks }) => {
+  const [checked, setChecked] = useState(false);
+
   const checkTheme = createTheme({
     palette: {
       primary: {
@@ -27,16 +29,24 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
   }
 
   const completeHandler = () => {
+    const tasksAPI = `http://localhost:3001/api/tasks/${task.id}`;
+    const expData = { id: task.id, complete: !task.complete };    
+
+    axios.put(tasksAPI, expData);
     setTasks(tasks.map(elem => {
       if (elem.id === task.id) {
         return {
           ...elem, 
-          complete: !elem.complete
+          complete: expData.complete
         }
-      }
+      }     
       return elem;
     }));
   }
+
+  useEffect(() => {
+    setChecked(task.complete);
+  }, [tasks])
 
   return (    
     <ListItem>
@@ -63,13 +73,14 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
             <Checkbox 
               sx={{ color: green[500], margin: '0 1rem' }}
               onClick={completeHandler}
+              checked={checked}
             />
           </ThemeProvider>
           <p style={{ textDecoration : task.complete ? 'line-through' : 'none', fontSize: '1.2rem' }}>{task.text}</p>
           <Tooltip title='Delete' >
             <DeleteIcon 
               sx={{ color: red[500], m: 2 }}
-              onClick={deleteHandler}
+              onClick={deleteHandler}              
             />            
           </Tooltip>
         </ListItemButton>

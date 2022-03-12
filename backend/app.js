@@ -51,7 +51,30 @@ app.post('/api/tasks', (req, res) => {
 app.delete('/api/tasks/:id', (req, res) => {
   const task_id = req.params.id;
   const query = `DELETE FROM tasks WHERE id = $1`;
-  db.query(query, [task_id]);
+  db.query(query, [task_id])
+    .then(() => {
+      res.status(200)
+         .json({ success: true });
+    })
+    .catch(err => {
+      res.status(500)
+         .send({ error: err.message });
+    })
+})
+
+app.put('/api/tasks/:id', (req, res) => {
+  const { id, complete } = req.body;
+  const query = `UPDATE tasks SET complete = $2 WHERE id = $1;`;
+  const queryParams = [id, complete];
+  db.query(query, queryParams)
+    .then(() => {
+      res.status(200)
+         .json({ success: true });
+    })
+    .catch(err => {
+      res.status(500)
+         .send({ error: err.message });
+    })
 })
 
 app.listen(3001, () => {
