@@ -32,7 +32,7 @@ const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
             }])
         )
         .catch(err => {
-          console.log(err);
+          console.error(err);
         })
     } else {
       setError("Please, print your task first");

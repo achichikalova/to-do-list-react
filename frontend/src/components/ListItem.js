@@ -30,29 +30,35 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
         setTasks(tasks.filter(elem => elem.id !== task.id))
       )
       .catch(err => {
-        console.log(err);
+        console.error(err);
       })
   }
 
   const completeHandler = () => {
     const tasksAPI = `http://localhost:3001/api/tasks/${task.id}`;
-    const expData = { id: task.id, complete: !task.complete };    
+    const expData = { id: task.id, complete: !task.complete };
 
-    axios.put(tasksAPI, expData);
-    setTasks(tasks.map(elem => {
-      if (elem.id === task.id) {
-        return {
-          ...elem, 
-          complete: expData.complete
-        }
-      }     
-      return elem;
-    }));
+    axios
+      .put(tasksAPI, expData)
+      .then(
+        setTasks(tasks.map(elem => {
+          if (elem.id === task.id) {
+            return {
+              ...elem, 
+              complete: expData.complete
+            }
+          }     
+          return elem;
+        }))
+      .catch(err => {
+        console.error(err);
+      })
+    )
   }
 
   useEffect(() => {
     setChecked(task.complete);
-  }, [tasks])
+  }, [tasks.complete]);
 
   return (    
     <ListItem>
