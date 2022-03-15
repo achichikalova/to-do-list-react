@@ -24,8 +24,14 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
     const tasksAPI = `http://localhost:3001/api/tasks/${task.id}`;
     const expData = { id: task.id };
 
-    axios.delete(tasksAPI, expData);
-    setTasks(tasks.filter(elem => elem.id !== task.id));
+    axios
+      .delete(tasksAPI, expData)
+      .then(
+        setTasks(tasks.filter(elem => elem.id !== task.id))
+      )
+      .catch(err => {
+        console.log(err);
+      })
   }
 
   const completeHandler = () => {

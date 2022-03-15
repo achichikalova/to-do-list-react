@@ -20,18 +20,20 @@ const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
     const expData = { text: userInput, id: Math.random().toString(36).substring(2, 9), complete: false };    
     
     if (userInput.length !== 0) {
-      axios.post(tasksAPI, expData);
-      try {
-        setTasks([
-          ...tasks,
-          {
-            text: expData.text,
-            id: expData.id,
-            complete: expData.complete
-          }])
-      } catch (err) {
-        console.log(err);
-      }      
+      axios
+        .post(tasksAPI, expData)
+        .then(
+          setTasks([
+            ...tasks,
+            {
+              text: expData.text,
+              id: expData.id,
+              complete: expData.complete
+            }])
+        )
+        .catch(err => {
+          console.log(err);
+        })
     } else {
       setError("Please, print your task first");
     }
