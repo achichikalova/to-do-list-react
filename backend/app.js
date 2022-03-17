@@ -3,12 +3,10 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-// Set middleware
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Connect db
 const { Pool } = require('pg');
 const dbConfig = require('./dbConfig');
 const db = new Pool(dbConfig);

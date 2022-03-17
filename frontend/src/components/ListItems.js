@@ -3,7 +3,7 @@ import ListItemComponent from './ListItem';
 import List from '@mui/material/List';
 
 const ListItems = ({ tasks, setTasks }) => {
-  //get task from tasks
+ 
   const taskElement = tasks.map(task => {
     return (
       <ListItemComponent 

@@ -58,7 +58,7 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
 
   useEffect(() => {
     setChecked(task.complete);
-  }, [tasks]);
+  }, [task.complete]);
 
   return (    
     <ListItem>
