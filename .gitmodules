@@ -1,0 +1,4 @@
+[submodule "server"]
+	path = server
+	url = git@github.com:achichikalova/to-do-list-react-server.git
+	branch = master
