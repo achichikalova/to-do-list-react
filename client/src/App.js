@@ -11,7 +11,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    const tasksAPI = `http://localhost:3001/api/tasks`;
+    const tasksAPI = `https://to-do-app-chi.herokuapp.com/api/tasks`;
 
     axios
       .get(tasksAPI)

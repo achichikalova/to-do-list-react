@@ -16,7 +16,7 @@ const AddListItem = ({ userInput, setUserInput, tasks, setTasks }) => {
   const submitTaskHandler = (e) => {
     e.preventDefault();
 
-    const tasksAPI = `http://localhost:3001/api/tasks`;
+    const tasksAPI = `https://to-do-app-chi.herokuapp.com/api/tasks`;
     const expData = { text: userInput, id: Math.random().toString(36).substring(2, 9), complete: false };    
     
     if (userInput.length !== 0) {

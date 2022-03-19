@@ -21,7 +21,7 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
   });
 
   const deleteHandler = () => {
-    const tasksAPI = `http://localhost:3001/api/tasks/${task.id}`;
+    const tasksAPI = `https://to-do-app-chi.herokuapp.com/api/tasks/${task.id}`;
     const expData = { id: task.id };
 
     axios
@@ -35,7 +35,7 @@ const ListItemComponent = ({ task, tasks, setTasks }) => {
   }
 
   const completeHandler = () => {
-    const tasksAPI = `http://localhost:3001/api/tasks/${task.id}`;
+    const tasksAPI = `https://to-do-app-chi.herokuapp.com/api/tasks/${task.id}`;
     const expData = { id: task.id, complete: !task.complete };
 
     axios
